@@ -21,26 +21,37 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
               <% if user_signed_in? %>
-              <li class="nav-item">
-                <%= link_to 'Users', user_path(current_user.id), class: 'nav-link text-light' %>
-              </li><!--ユーザー一覧　user_indexに変更 -->
-              <li class="nav-item">
-                <%= link_to 'Books', new_post_image_path, class: 'nav-link text-light' %>
-              </li><!-- 投稿一覧　book_indexに変更 -->
-              <li class="nav-item">
-                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+               <li class="nav-item">
+              <%= link_to root_path, class: 'nav-link text-light' do %><i class="fa-solid fa-house"></i> Home
+              <% end %>
               </li>
+              <li class="nav-item">
+                <%= link_to users_path, class: 'nav-link text-light' do %><i class="fa-solid fa-users"></i> Users
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to books_path, class: 'nav-link text-light' do %><i class="fa-solid fa-book-open"></i> Books
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %><i class="fa-solid fa-right-from-bracket"></i>Log out
+                <% end %>
               <% else %>
-              <%= link_to 'Home', class: 'nav-link text-light' %>
-              </li><!--トップ画面に変更 -->
-              <li class="nav-item">
-                <%= link_to 'about', new_post_image_path, class: 'nav-link text-light' %>
-              </li><!-- aboutページに変更 -->
-              <li class="nav-item">
-                <%= link_to "Sign up", new_user_registration_path, class: 'nav-link text-light' %>
+               <li class="nav-item">
+              <%= link_to root_path, class: 'nav-link text-light' do %><i class="fa-solid fa-house"></i> Home
+              <% end %>
               </li>
               <li class="nav-item">
-                <%= link_to "Log in", new_user_session_path, class: 'nav-link text-light' %>
+                <%= link_to about_path, class: 'nav-link text-light' do %><i class="fa-solid fa-link"></i> About
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_registration_path, class: 'nav-link text-light' do %><i class="fa-solid fa-user-plus"></i> Sign up
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_user_session_path, class: 'nav-link text-light' do %><i class="fa-solid fa-right-to-bracket"></i>Log in
+                <% end %>
               </li>
               <% end %>
             </ul>
@@ -52,61 +63,8 @@
       <div class="destroy-message"><!-- Signed in successfully.に変更 -->
     <%= flash[:notice] %>
       </div>
-    <div class="container px-5 px-sm-0">
-      <div class="row">
-        <div class="col-md-3">
-          <h2>User info</h2>
-           <div class="col-2">
-             <%= image_tag post_image.user.get_profile_image(100,100), class: "mt-3 rounded-circle"; %>
-           </div> <<!--プロフィール画像実装確認 -->>
-　　　　　　<tbody>
-　　　　　　  <tr></tr>
-　　　　　　  <tr>
-　　　　　　  <th>name</th>
-　　　　　　  <th><!-- ユーザー名 --></th>
-　　　　　　  </tr>
-　　　　　　  <tr>
-　　　　　　    <th>introduction</th>
-　　　　　　    <th></th>
-　　　　　　  </tr>
-　　　　　　</tbody>
-            <div class="row">
-              <a class="btn btn-outline-secondary btn-block">
-                <i class="fas fa-user-cog"></i>
-                <!-- userのeditページ -->
-              </a>
-            </div>
-            <div class="row">
-            <h2 class="mt-3">New book</h2>
-              <%= form_with model: @book do |f| %>
-             <div class="form-group">
-             <label for="book_title">Title</label>
-              <%= f.text_field :title %>
-             </div>
-             <div class="form-group">
-               <label for="book_opinion">Opinion</label>
-              <%= f.text_area :body %>
-              </div>
-             <br>
-              <%= f.submit 'Create Books', class:'btn btn-success' %>
-             <% end %>
-            </div>
-      </div>
-    </div>
-    <!-- ここからUserの記事一覧 -->
-    <h2><strong>Books</strong></h2>
-<table>
-　<tr>
-　  <th>Title</th><th>Opinion</th></tr>
-　  <% @books.each do |book| %><!-- ユーザーの投稿一覧 -->
-　  <tr>
-　    <td></td>
-　    <td><%= book.title %></td>
-　    <td><%= book.body %></td>
-　    <td></td>
-　  </tr>
-　<% end %>
- </table>
+
+
 
       <%= yield %>
     </main>

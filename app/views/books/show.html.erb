@@ -1,0 +1,18 @@
+  <p id="notice"></p>
+  <div class="container px-5 px-sm-0">
+    <div class="col-md-3">
+      <!-- 部分テンプレート -->
+     <h2><strong>Book detail</strong></h2>
+      <table>
+　      <tr>
+　      <td></td>
+　      <td><%= image_tag @user.get_profile_image(100,100) %></td>
+　      <td><%= link_to book_path(@user) %><%= book.title %></td>
+　      <td><%= @book.body %></td>
+　      <td><%= link_to edit_book_path(book) class: 'btn btn-sm btn-success edit_book_147868' %>Edit</td>
+        <td><%= link_to 'Destroy', book, method: :delete, data: {confirm: "Are you sure?"},class: 'buttom' %></td>
+　     </tr>
+       　<% end %>
+       </table>
+    </div>
+  </div>
