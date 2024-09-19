@@ -1,10 +1,13 @@
 class UsersController < ApplicationController
-  before_action :is_matching_login_user, only: [:edit, :update ,:index, :show]
+  before_action :is_matching_login_user, only: [:edit, :update , :show]
+
+
+
 
   def show
     @user = User.find(params[:id])
     @users = User.all
-    @books = @user.books
+    @userbooks = @user.books
   end
 
   def edit
@@ -12,7 +15,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    @book = Book.new
+    @user = current_user
     @users = User.all
   end
 
@@ -31,7 +34,7 @@ class UsersController < ApplicationController
   def is_matching_login_user
     user = User.find(params[:id])
     unless user.id == current_user.id
-      redirect_to post_images_path
+      redirect_to user_path
     end
   end
 end
