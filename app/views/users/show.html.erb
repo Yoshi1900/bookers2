@@ -9,16 +9,17 @@
       <div class="col-md-8 offset-md-1">
       <h2>Books</h2>
       <table class="table ">
-　      <tr>
-　       <th>Title</th><th>Opinion</th><th></th></tr>
-　     <% @user.books.each do |book| %>
-　      <tr>
-　        <td><%= book.title %></td>
-　        <td><%= book.body %></td>
-　        <td></td>
-　      </tr>
-　     <% end %>
+      <tr>
+       <th></th><th>Title</th><th>Opinion</th></tr>
+     <% @user.books.each do |book| %>
+     <tr>
+       <td><%= image_tag @user.get_profile_image(100,100) %></td>
+       <td><%= link_to book_path(book) do %><%= book.title %><% end %></td>
+        <td><%= book.body %></td>
+        <td></td>
+     </tr>
+     <% end %>
       </table>
      </div>
      </div>
-  　</div>
+    </div>

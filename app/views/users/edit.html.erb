@@ -3,11 +3,11 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px--sm-0 mx-auto">
      <h2>User info</h2>
-      <% if @book.errors.any? %>
-        <h3><%= @book.errors.count %> <strong>error prohibited this book from being saved:</strong></h3>
+      <% if @user.errors.any? %>
+        <h3><%= @user.errors.count %> <strong>error prohibited this book from being saved:</strong></h3>
         <ul>
-          <% @book.errors.full_messages.each do |message| %>
-        <li>・<%= message %></li>
+          <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
           <% end %>
         </ul>
        <% end %>

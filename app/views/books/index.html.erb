@@ -14,10 +14,9 @@
           <% @books.each do |book| %><!-- ユーザーの投稿一覧 -->
         <tr>
         <td></td>
-        <td><%= image_tag Book.user.get_profile_image(100,100) %></td>
-        <td><%= link_to book_path(user) %><%= book.title %></td>
+        <td><%= image_tag book.user.get_profile_image(100,100) %></td>
+        <td><%= link_to book_path(book.user) do %><%= book.title %><% end %></td>
         <td><%= book.body %></td>
-         <td><%= link_to 'Show', book_path(book) %></td>
         </tr>
          <% end %>
        </table>
